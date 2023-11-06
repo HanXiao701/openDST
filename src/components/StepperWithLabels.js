@@ -1,13 +1,13 @@
 import React from 'react';
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import i18next from "i18next";
 
-const theme = createMuiTheme({
+const theme = createTheme({
     overrides: {
-        MuiStepIcon:{
+        MuiStepIcon: {
             root: {
                 '&$completed': {
                     color: '#fdcc52',
@@ -106,22 +106,28 @@ export default function StepperWithLabels(props) {
                 counter--;
             }
         }
-        return {steps: list, stepCounter: counter};
+        return { steps: list, stepCounter: counter };
     }
-    const {steps, stepCounter} = getStepsAndCounter(props.slideSequences, props.studyPagesSequence[props.pageIndex])
-    return (
-        <div className="row p-0">
-            <div className="col-md-12 p-0">
-                <ThemeProvider theme={theme}>
-                    <Stepper activeStep={stepCounter} alternativeLabel className="pb-2">
-                        {steps.map((label, index) => (
-                            <Step key={label + index}>
-                                <StepLabel>{label}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
-                </ThemeProvider>
-            </div>
-        </div>
+    const { steps, stepCounter } = getStepsAndCounter(props.slideSequences, props.studyPagesSequence[props.pageIndex])
+    return ( <
+        div className = "row p-0" >
+        <
+        div className = "col-md-12 p-0" >
+        <
+        ThemeProvider theme = { theme } >
+        <
+        Stepper activeStep = { stepCounter }
+        alternativeLabel className = "pb-2" > {
+            steps.map((label, index) => ( <
+                Step key = { label + index } >
+                <
+                StepLabel > { label } < /StepLabel> < /
+                Step >
+            ))
+        } <
+        /Stepper> < /
+        ThemeProvider > <
+        /div> < /
+        div >
     );
 }
